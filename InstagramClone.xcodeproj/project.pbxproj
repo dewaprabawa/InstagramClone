@@ -31,6 +31,7 @@
 		C38EED9324F54E5D00A52372 /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38EED9224F54E5D00A52372 /* DataBaseManager.swift */; };
 		C38EED9524F54FB200A52372 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38EED9424F54FB200A52372 /* AuthManager.swift */; };
 		C38EED9724F550DA00A52372 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38EED9624F550DA00A52372 /* StorageManager.swift */; };
+		C38EED9A24F58D6000A52372 /* uiview+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38EED9924F58D6000A52372 /* uiview+extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		C38EED9224F54E5D00A52372 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
 		C38EED9424F54FB200A52372 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		C38EED9624F550DA00A52372 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		C38EED9924F58D6000A52372 /* uiview+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "uiview+extensions.swift"; sourceTree = "<group>"; };
 		D23498A670968A4BC86ACA35 /* Pods_InstagramClone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramClone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -114,6 +116,7 @@
 		C38EED5C24F522A100A52372 /* InstagramClone */ = {
 			isa = PBXGroup;
 			children = (
+				C38EED9824F58D0800A52372 /* extensions */,
 				C38EED5D24F522A100A52372 /* AppDelegate.swift */,
 				C38EED9224F54E5D00A52372 /* DataBaseManager.swift */,
 				C38EED9424F54FB200A52372 /* AuthManager.swift */,
@@ -180,6 +183,14 @@
 				C38EED7C24F532D300A52372 /* SearchResultViewController.swift */,
 			);
 			path = General;
+			sourceTree = "<group>";
+		};
+		C38EED9824F58D0800A52372 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C38EED9924F58D6000A52372 /* uiview+extensions.swift */,
+			);
+			path = extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,6 +327,7 @@
 				C38EED5E24F522A100A52372 /* AppDelegate.swift in Sources */,
 				C38EED7B24F532C000A52372 /* ListViewController.swift in Sources */,
 				C38EED6024F522A100A52372 /* SceneDelegate.swift in Sources */,
+				C38EED9A24F58D6000A52372 /* uiview+extensions.swift in Sources */,
 				C38EED8524F533ED00A52372 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
