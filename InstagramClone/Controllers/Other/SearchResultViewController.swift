@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SearchResultViewController.swift
 //  InstagramClone
 //
 //  Created by Dewa Prabawa on 25/08/20.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SearchResultViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
     }
 
 
 }
-
