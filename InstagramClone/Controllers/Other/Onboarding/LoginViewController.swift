@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
         textfield.backgroundColor = .secondarySystemBackground
         textfield.translatesAutoresizingMaskIntoConstraints = false
         textfield.layer.cornerRadius = Constants.cornerRadius
-        textfield.layer.borderColor = UIColor.secondarySystemBackground.cgColor
+        textfield.layer.borderColor = UIColor.secondaryLabel.cgColor
         textfield.layer.borderWidth = 1.0
         return textfield
     }()
@@ -46,7 +46,7 @@ class LoginViewController: UIViewController {
         textfield.backgroundColor = .secondarySystemBackground
         textfield.translatesAutoresizingMaskIntoConstraints = false
         textfield.layer.cornerRadius = Constants.cornerRadius
-        textfield.layer.borderColor = UIColor.secondarySystemBackground.cgColor
+        textfield.layer.borderColor = UIColor.secondaryLabel.cgColor
         textfield.layer.borderWidth = 1.0
         return textfield
     }()
@@ -88,8 +88,9 @@ class LoginViewController: UIViewController {
         let btn = UIButton(type: .system)
         btn.setTitleColor(.white, for: .normal)
         btn.setTitle("New User? Create an Account", for: .normal)
-        btn.setTitleColor(.label, for: .normal)
+        btn.setTitleColor(.secondaryLabel, for: .normal)
         btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.addTarget(self, action: #selector(didTapCreateAccount), for: .touchUpInside)
         return btn
     }()
     
@@ -158,7 +159,7 @@ class LoginViewController: UIViewController {
         upperstackView.alignment = .fill
         upperstackView.distribution = .fillEqually
         upperstackView.axis = .vertical
-        upperstackView.spacing = 5
+        upperstackView.spacing = 10
         view.addSubview(upperstackView)
         
         
@@ -189,16 +190,60 @@ class LoginViewController: UIViewController {
         
         lowerstackview.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.1),
         lowerstackview.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        lowerstackview.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-        lowerstackview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+        lowerstackview.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 130),
+        lowerstackview.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -130)
         
         ])
     }
     
-    @objc private func didTapLogin(){}
-    @objc private func didTapTerm(){}
-    @objc private func didTapPrivacy(){}
-    @objc private func didTapCreateAccount(){}
+    @objc private func didTapLogin(){
+        passwordField.becomeFirstResponder()
+        usernameField.becomeFirstResponder()
+        
+        guard let passwordTextField = passwordField.text, !passwordTextField.isEmpty,
+            let usernameTextField = usernameField.text,
+            !usernameTextField.isEmpty, usernameTextField.count >= 8 else { return }
+        
+        var usernameText:String?
+        var emailText:String?
+        
+        if usernameTextField.contains("@"), usernameTextField.contains("."){
+            emailText = usernameTextField
+        }else {
+            usernameText = usernameTextField
+        }
+        
+        AuthManager.shared.loginUser(username: usernameText, email: emailText, password: passwordTextField) { (success) in
+            DispatchQueue.main.async {
+                if success {
+                    print(success)
+                    self.dismiss(animated: true, completion: nil)
+                }else{
+                    let alertController = UIAlertController(title: "Log in Error", message: "We are unable to log in", preferredStyle: .alert)
+                    alertController.addAction(UIAlertAction(title: "Dissmis", style: .cancel, handler: nil))
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
+        
+    }
+    
+    
+    @objc private func didTapTerm(){
+        if let url = URL(string: "https://help.instagram.com/581066165581870"), !url.absoluteString.isEmpty {
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    }
+        
+    }
+    @objc private func didTapPrivacy(){
+        if let url = URL(string: "https://help.instagram.com/519522125107875"), !url.absoluteString.isEmpty {
+                              UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                          }
+    }
+    @objc private func didTapCreateAccount(){
+        let vc = RegistrationViewController()
+        present(vc, animated: true, completion: nil)
+    }
     
 }
 
@@ -206,8 +251,10 @@ class LoginViewController: UIViewController {
 extension LoginViewController: UISearchTextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == usernameField {
-            passwordField.becomeFirstResponder()
+            usernameField.becomeFirstResponder()
         }else if textField == passwordField{
+            passwordField.becomeFirstResponder()
+        }else{
             didTapLogin()
         }
         

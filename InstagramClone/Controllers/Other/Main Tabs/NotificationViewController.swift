@@ -12,19 +12,43 @@ class NotificationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        
+        setupviews()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setupviews(){
+        navigationSetup()
+        tableviewSetups()
     }
-    */
+    
+    private func navigationSetup(){
+        self.title = "Notification"
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    private func tableviewSetups(){
+        let tableview = UITableView(frame: .zero, style: .plain)
+        tableview.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableview.delegate = self
+        tableview.dataSource = self
+        tableview.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tableview)
+        tableview.pin(to: view)
+    }
 
+}
+
+
+extension NotificationViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    
+    
 }
